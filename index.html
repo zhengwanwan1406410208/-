@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>运维管理系统首页</title>
+	<meta name="keywords" content="fsLayuiPlugin,layui,layuiPlugin,layui插件" />
+    <meta name="description" content="fsLayuiPlugin,layui,layuiPlugin,layui插件" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="refreshTable" content="0"/>
+	<meta name="uploadFilePath" content=""/>
+	<link rel="stylesheet" type="text/css" href="plugins/layui/css/layui.css" media="all"/>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="layui-layout-body">
+<input id="loginUserProvince" value="${loginUser.province}" type="hidden"/>
+<input id="loginUserID" value="${loginUser.id}" type="hidden"/>
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header my-header">
+    <!--<a href="index.html"><div class="layui-logo">fsLayuiPlugin</div></a>-->
+	  <div class="top">
+		  <i class="top_logo f1">
+			  <img src="images/manager_logo.png" alt="">
+		  </i>
+	  </div>
+	  <ul class="layui-nav" lay-filter="">
+
+	  </ul>
+	  <ul class="layui-nav my-header-user-nav">
+		  <div class="topRight">
+			  <div class="admin">
+				  <a class="user" href="">
+					  <i class="userImg"></i>
+					  <span>管</span>
+				  </a>
+				  <a class="divUser">${loginUser.province}管理员</a>
+				  <a class="exit" href="../user/exitLogin">
+					  <i class="sign-out">
+						  <img src="images/exit.png" alt="">&nbsp&nbsp退&nbsp出
+					  </i>
+				  </a>
+			  </div>
+		  </div>
+	  </ul>
+  </div>
+
+  <div class="layui-side my-side">
+     <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+       <ul class="layui-nav layui-nav-tree"  lay-filter="side-main">
+		   <div class="layui-collapse" lay-accordion="">
+			    <div class="layui-colla-item">
+				    <h2 class="layui-colla-title">用户管理</h2>
+				    <div class="layui-colla-content" style="padding:0;margin:0;">
+                        <li class="layui-nav-item layui-nav-itemed">
+          <!--<a class="" href="javascript:;">案例</a>-->
+          <!--<dl class="layui-nav-child">
+          	<dd class="layui-this"><a href="index.html">首页</a></dd>
+            <dd><a href="views/datagrid/index.html">数据表格</a></dd>
+            <dd><a href="views/treeDatagrid/index.html">树+表格</a></dd>
+            <dd><a href="views/multiDatagrid/index.html">多数据表格</a></dd>
+            <dd><a href="views/tabDatagrid/index.html">tab数据表格</a></dd>
+            <dd><a href="views/complexDatagrid/index.html">复杂数据表格</a></dd>
+            <dd><a href="views/linkageDatagrid/index.html">联动数据表格</a></dd>
+            <dd><a href="views/linkageDatagrid2/index.html">联动数据表格(复杂)</a></dd>
+          </dl>-->
+			<dl class="layui-nav-child">
+				<dd>
+					<a href="javascript:;" href-url="views/datagrid/index.html" data-type="">用户管理</a>
+				</dd>
+			</dl>
+        </li>
+	</div>
+</div>
+		 <div class="layui-colla-item">
+			 <h2 class="layui-colla-title">字典管理</h2>
+			 <div class="layui-colla-content" style="padding:0;margin:0;">
+				 <li class="layui-nav-item layui-nav-itemed">
+					 <dl class="layui-nav-child">
+						 <dd>
+							 <a href="javascript:;" href-url="views/datagrid/dqzdgl.html" data-type="tabAdd">地区字典管理</a>
+						 </dd>
+						 <dd>
+							 <a href="javascript:;" href-url="views/datagrid/sjzdgl.html" data-type="tabAdd">数据字典管理</a>
+						 </dd>
+					 </dl>
+				 </li>
+			 </div>
+		 </div>
+</div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layui-body my-body">
+    <!-- 内容主体区域 -->
+	  <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+		  <ul class="layui-tab-title">
+			  <li class="layui-this " lay-id="0">
+				  用户管理
+			  </li>
+
+		  </ul>
+		  <div class="layui-tab-content">
+			  <div class="layui-tab-item layui-show">
+				  <iframe id="iframe" src="views/datagrid/index.html" frameborder="0"></iframe>
+			  </div>
+		  </div>
+	  </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="plugins/layui/layui.js"></script>
+<script type="text/javascript">
+    var t;
+    function t() {
+
+        $.ajax({type: 'HEAD', async: true})
+
+            .success(function (data, status, xhr) {
+
+                t = xhr.getResponseHeader('Date');
+                alert('t');
+            });
+    }
+
+    layui.use(['layer', 'element', 'util'], function () {
+        var element = layui.element(),
+            layer = layui.layer,
+            layer = layui.layer,
+            $ = layui.jquery,
+            util = layui.util; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var side = $('.my-side');
+        var body = $('.my-body');
+        var footer = $('.my-footer');
+
+        // 监听导航栏收缩
+        $('.btn-nav').on('click', function () {
+            if (localStorage.log == 0) {
+                localStorage.log = 1;
+                navShow(50);
+            } else {
+                localStorage.log = 0;
+                navHide(50);
+            }
+        });
+
+        // 导航栏收缩
+        function navHide(t) {
+            var time = t ? t : 100;
+            side.animate({
+                'left': -200
+            }, time);
+            body.animate({
+                'left': 0
+            }, time);
+            footer.animate({
+                'left': 0
+            }, time);
+        }
+
+        // 导航栏展开
+        function navShow(t) {
+            var time = t ? t : 100;
+            side.animate({
+                'left': 0
+            }, time);
+            body.animate({
+                'left': 200
+            }, time);
+            footer.animate({
+                'left': 200
+            }, time);
+        }
+        //监听导航(side)点击切换页面
+        element.on('nav(side)', function (elem) {
+            var card = 'card'; // 选项卡对象
+            var title = elem.text(); // 导航栏text
+            var src = elem.children('a').attr('href-url'); // 导航栏跳转URL
+            var id = new Date().getTime(); // ID
+            var flag = getTitleId(card, title); // 是否有该选项卡存在
+            // 大于0就是有该选项卡了
+            if ((flag > 0) && (title='用户管理')){
+                id = flag;
+            } else {
+                //新增
+
+				element.tabAdd(card, {
+					title: '<span>' + title + '</span>',
+					content: '<iframe src="' + src + '" frameborder="0"></iframe>',
+					id: id
+				});
+
+
+            }
+            // 切换相应的ID tab
+            element.tabChange(card, id);
+            // 提示信息
+            layer.msg(title);
+            // 关闭弹窗
+            layer.closeAll();
+        });
+
+        // 根据导航栏text获取lay-id
+        function getTitleId(card, title) {
+            var id = -1;
+            $(document).find(".layui-tab[lay-filter=" + card + "] ul li").each(function () {
+                if (title === $(this).find('span').text()) {
+                    id = $(this).attr('lay-id');
+                }
+            });
+            return id;
+        }
+
+        // 监听控制content高度
+        function init() {
+            // 起始判断收缩还是展开
+            /*if (localStorage.log == 0) {
+                navHide(1);
+            } else {
+                navShow(1);
+            }*/
+            // 选项卡高度
+            cardTitleHeight = $(document).find(".layui-tab[lay-filter='card'] ul.layui-tab-title").height();
+            // 需要减去的高度
+            height = $(window).height() - $('.layui-header').height() - cardTitleHeight - $('.layui-footer')
+                .height();
+            // 设置高度
+            $(document).find(".layui-tab[lay-filter='card'] div.layui-tab-content").height(height - 2);
+        }
+
+        // 自适应
+        $(window).on('resize', function () {
+            if ($(this).width() > 1024) {
+                if (localStorage.log == 0) {
+                    localStorage.log = 1;
+                    navShow();
+                }
+            } else {
+                if (localStorage.log == 1) {
+                    localStorage.log = 0;
+                    navHide();
+                }
+            }
+            init();
+        });
+        // 初始化
+        init();
+
+        // 分辨率小于1024  使用内部工具组件
+        if ($(window).width() < 1024) {
+            util.fixbar({
+                bar1: '&#xe602;',
+                css: {
+                    left: 10,
+                    bottom: 54
+                },
+                click: function (type) {
+                    if (type === 'bar1') {
+                        //iframe层
+                        layer.open({
+                            type: 1, // 类型
+                            title: false, // 标题
+                            offset: 'l', // 定位 左边
+                            closeBtn: 0, // 关闭按钮
+                            anim: 0, // 动画
+                            shadeClose: true, // 点击遮罩关闭
+                            shade: 0.8, // 半透明
+                            area: ['150px', '100%'], // 区域
+                            skin: 'my-mobile', // 样式
+                            content: $('body .my-side').html() // 内容
+                        });
+                    }
+                    element.init();
+                }
+            });
+            localStorage.log = 0;
+            navHide(1);
+        }
+        // 根据导航栏text获取lay-id
+        function getTitleId(card, title) {
+            var id = -1;
+            $(document).find(".layui-tab[lay-filter=" + card + "] ul li").each(function () {
+                if (title === $(this).find('span').html()) {
+                    id = $(this).attr('lay-id');
+                }
+            });
+            return id;
+        }
+        // 添加TAB选项卡
+        window.addTab = function (elem, tit, url) {
+            var card = 'card';                                              // 选项卡对象
+            var title = tit ? tit : elem.children('a').html();              // 导航栏text
+            var src = url ? url : elem.children('a').attr('href-url');      // 导航栏跳转URL
+            var id = new Date().getTime();                                  // ID
+            var flag = getTitleId(card, title);                             // 是否有该选项卡存在
+            // 大于0就是有该选项卡了
+            if (flag > 0) {
+                id = flag;
+            } else {
+                if (src && title != '用户管理') {
+                    //新增
+                    element.tabAdd(card, {
+                        title: '<span>' + title + '</span>'
+                        , content: '<iframe src="' + src + '" frameborder="0"></iframe>'
+                        , id: id
+                    });
+                    // 关闭弹窗
+                    layer.closeAll();
+                }
+            }
+            // 切换相应的ID tab
+            element.tabChange(card, id);
+
+            // 提示信息
+            // layer.msg(title);
+        };
+        // 监听顶部左侧导航
+        element.on('nav(side-top-left)', function (elem) {
+            // 添加tab方法
+            window.addTab(elem);
+
+        });
+        element.on('nav(filter)',function (elem) {
+            console.log(elem);
+        });
+
+        // 监听顶部右侧导航
+        element.on('nav(side-top-right)', function (elem) {
+            // 修改skin
+            if ($(this).attr('data-skin')) {
+                localStorage.skin = $(this).attr('data-skin');
+                skin();
+            } else {
+                // 添加tab方法
+                window.addTab(elem);
+            }
+        });
+        // 监听导航(side-main)点击切换页面
+        element.on('nav(side-main)', function (elem) {
+            // 添加tab方法
+            window.addTab(elem);
+
+        });
+         //监听tab选项卡切换
+        element.on('tab(card)',function () {
+
+                layui.each($(".layui-nav-child"), function () {
+                    $(this).find("dd").removeClass("layui-this");
+                });
+
+        });
+        // 删除选项卡
+        window.delTab = function (layId) {
+            // 删除
+            element.tabDelete('card', layId);
+        };
+        // 删除所有选项卡
+        window.delAllTab = function () {
+            // 选项卡对象
+            layui.each($('.my-body .layui-tab-title > li'), function (k, v) {
+                var layId = $(v).attr('lay-id');
+                if (layId > 1) {
+                    // 删除
+                    element.tabDelete('card', layId);
+                }
+            });
+        };
+
+        // 获取当前选中选项卡lay-id
+        window.getThisTabID = function () {
+            // 当前选中的选项卡id
+            return $(document).find('body .my-body .layui-tab-card > .layui-tab-title .layui-this').attr('lay-id');
+        };
+
+        // 双击关闭相应选项卡
+        $(document).on('dblclick', '.my-body .layui-tab-card > .layui-tab-title li', function () {
+            // 欢迎页面以外，删除选项卡
+            if ($(this).index() > 0) {
+                element.tabDelete('card', $(this).attr('lay-id'));
+            } else {
+                layer.msg('不能关闭')
+            }
+        });
+
+        element.on('tab(tab-switch)', function(data){
+            if(data.elem.context.attributes != undefined){
+                var id = data.elem.context.attributes[0].nodeValue;
+                layui.each($(".layui-nav-child"), function () {
+                    $(this).find("dd").removeClass("layui-this");
+                });
+                $("#"+id).attr("class","layui-this");
+            }
+        });
+
+    });
+
+
+    //退出
+    function exit(e) {
+        location.href="../user/exitLogin"
+    }
+    function onQuickClick(e) {
+        tree.expandPath("datagrid");
+        tree.selectNode("datagrid");
+    }
+
+    /*function onTabsActiveChanged(e) {
+        var tabs = e.sender;
+        var tab = tabs.getActiveTab();
+        if (tab && tab._nodeid) {
+            var node = tree.getNode(tab._nodeid);
+            if (node && !tree.isSelectedNode(node)) {
+                tree.selectNode(node);
+            }
+        }
+    }*/
+</script>
+</html>
